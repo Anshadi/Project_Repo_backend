@@ -1,0 +1,43 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: voice-shopping-backend
+
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb+srv://voice:voice@myatlasclusteredu.see4s.mongodb.net/voice_shopping_db?retryWrites=true&w=majority&appName=myAtlasClusterEDU}
+      auto-index-creation: true
+
+  web:
+    cors:
+      allowed-origins: "http://localhost:*"
+      allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+      allowed-headers: "*"
+      allow-credentials: true
+
+# Google Gemini AI Configuration
+gemini:
+  api:
+    key: ${GEMINI_API_KEY:${gemini.api.key:your-gemini-api-key-here}}
+    model: gemini-1.5-flash
+    max-tokens: 150
+
+# Logging Configuration
+logging:
+  level:
+    com.voice.shopping: DEBUG
+    org.springframework.data.mongodb: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+# Application Configuration
+app:
+  voice:
+    processing:
+      timeout: 30s
+  recommendations:
+    max-items: 4
+  search:
+    max-results: 20
