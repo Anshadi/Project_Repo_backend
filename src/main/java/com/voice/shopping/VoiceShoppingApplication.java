@@ -2,7 +2,6 @@ package com.voice.shopping;
 
 import com.voice.shopping.service.ProductService;
 import com.voice.shopping.repository.ShoppingItemRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,11 +14,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Slf4j
 @SpringBootApplication
 @EnableMongoRepositories
-@RequiredArgsConstructor
 public class VoiceShoppingApplication implements CommandLineRunner {
 
     private final ProductService productService;
     private final ShoppingItemRepository shoppingItemRepository;
+
+    public VoiceShoppingApplication(ProductService productService, ShoppingItemRepository shoppingItemRepository) {
+        this.productService = productService;
+        this.shoppingItemRepository = shoppingItemRepository;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(VoiceShoppingApplication.class, args);
@@ -32,7 +35,8 @@ public class VoiceShoppingApplication implements CommandLineRunner {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                     .allowedOrigins("https://spontaneous-sherbet-a72ea7.netlify.app")
-                    .allowedMethods("*");
+                    .allowedMethods("*")
+                    .allowedHeaders("*");
             }
         };
     }
