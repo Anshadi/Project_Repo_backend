@@ -10,12 +10,12 @@ spring:
       uri: ${MONGODB_URI:mongodb+srv://voice:voice@myatlasclusteredu.see4s.mongodb.net/voice_shopping_db?retryWrites=true&w=majority&appName=myAtlasClusterEDU}
       auto-index-creation: true
 
-  web:
-    cors:
-      allowed-origins: "http://localhost:*"
-      allowed-methods: GET,POST,PUT,DELETE,OPTIONS
-      allowed-headers: "*"
-      allow-credentials: true
+   web:  
+    cors:  
+      allowed-origins: "http://localhost:*,https://bet-a72ea7.netlify.app"  
+      allowed-methods: GET,POST,PUT,DELETE,OPTIONS  
+      allowed-headers: "*"  
+      allow-credentials: true  
 
 # Google Gemini AI Configuration
 gemini:
