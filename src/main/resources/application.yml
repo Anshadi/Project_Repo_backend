@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: ${PORT:8082}   # Use Railway's PORT if available, else 8082 locally
 
 spring:
   application:
