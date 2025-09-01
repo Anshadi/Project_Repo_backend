@@ -12,7 +12,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/recommendations")
 @RequiredArgsConstructor
-@CrossOrigin(origins = { "http://localhost:*", "http://127.0.0.1:*" })
+@CrossOrigin(origins = { "https://project-repo-0.onrender.com", "http://localhost:*", "http://127.0.0.1:*" })
 public class RecommendationController {
 
     private final RecommendationService recommendationService;
