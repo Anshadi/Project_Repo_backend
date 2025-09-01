@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: voice-shopping-backend
+    env: docker
+    plan: free
+    dockerfile: Dockerfile
+    envVars:
+      - key: SPRING_DATA_MONGODB_URI
+        fromService:
+          name: mongo
+          type: mongodb
+          property: connectionString
+      - key: GEMINI_API_KEY
+        fromService:
+          name: mongo
+          type: mongodb
+          property: connectionString
+    numInstances: 1
+    healthCheckPath: /actuator/health
+
+databases:
+  - name: mongo
+    plan: free
+    type: mongodb
+    version: 6

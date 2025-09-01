@@ -1,0 +1,7 @@
+# Ignore everything
+target/
+.git/
+.idea/
+*.iml
+*.log
+*.env
