@@ -28,13 +28,13 @@ public class VoiceShoppingApplication implements CommandLineRunner {
         SpringApplication.run(VoiceShoppingApplication.class, args);
     }
 
-    @Bean
+     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                    .allowedOrigins("https://spontaneous-sherbet-a72ea7.netlify.app")
+                    .allowedOrigins("https://project-repo-0.onrender.com", "http://localhost:3000", "http://127.0.0.1:*")
                     .allowedMethods("*")
                     .allowedHeaders("*");
             }
@@ -43,9 +43,9 @@ public class VoiceShoppingApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("🚀 Voice Shopping Assistant Backend Started Successfully!");
-        log.info("📡 API Server running on http://localhost:8082");
-        log.info("📋 API Documentation available at http://localhost:8082/api");
+        log.info("Voice Shopping Assistant Backend Started Successfully!");
+        log.info(" API Server running on http://localhost:8082");
+        log.info(" API Documentation available at http://localhost:8082/api");
 
         // Clear all shopping lists to ensure fresh start
         long deletedItems = shoppingItemRepository.count();
