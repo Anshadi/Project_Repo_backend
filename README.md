@@ -25,7 +25,9 @@ A complete voice-enabled shopping web application with Flutter frontend and Spri
 ## Deployment
 
 - **Frontend**: Hosted on [Render](https://project-repo-0.onrender.com/)
-- **Backend**: Hosted on [Render](https://projectrepobackend-production.up.railway.app)
+- **Backend**: Hosted on [Render](https://projectrepobackend-production.up.railway.app) (separate deployment)
+
+> **Note**: The backend and frontend are deployed as separate services on Render. Make sure the backend service is running before using the frontend application.
 
 ## Project Structure
 
@@ -86,13 +88,18 @@ flutter run -d web-server --web-port 8080
 
 ### Step 4: Configuration
 
-1. **Update API endpoint** (if needed)
+1. **Backend Setup** (Required)
+   - Ensure the backend service is running on Render
+   - Backend repository: [Project_Repo_backend](https://github.com/Anshadi/Project_Repo_backend)
+   - Backend URL: https://projectrepobackend-production.up.railway.app
+
+2. **Update API endpoint** (if needed)
    Edit `lib/services/api_service.dart`:
    ```dart
-   static const String baseUrl = 'https://your-backend-url.onrender.com/api';
+   static const String baseUrl = 'https://projectrepobackend-production.up.railway.app/api';
    ```
 
-2. **Enable microphone permissions**
+3. **Enable microphone permissions**
    - Web: Browser will prompt for microphone access
    - Permissions are handled automatically by Flutter web
 
