@@ -1,101 +1,141 @@
-# Voice Shopping Backend
+# Voice Shopping Assistant
 
-Spring Boot backend for Voice Shopping Assistant, providing AI-powered recommendations, voice processing, and shopping list management.
+A complete voice-enabled shopping web application with Flutter frontend and Spring Boot backend, featuring AI-powered recommendations and intelligent voice command processing.
+
+## Features Implemented
+
+1. **App Shell** + Bottom navigation with 4 tabs
+2. **Shopping List Screen** (Main Page) - Manage shopping lists with voice commands
+3. **Search & Item Lookup Screen** - Search for products
+4. **History Screen** - View purchase history and analytics
+5. **Settings Screen** - App preferences and theme management
+6. **Shared Lists Screen** - Share shopping lists with others
+7. **User Profile Screen** - User account management
+8. **UI Components** - Voice input widget, item cards, product cards, suggestions
 
 ## Tech Stack Used
 
-- **Spring Boot 3.2.0**: Framework for building REST APIs
-- **Java 17**: Programming language
-- **MongoDB**: NoSQL database for data storage
-- **Google Gemini AI**: For AI-powered recommendations and voice processing
-- **Maven**: Build tool
-- **Docker**: Containerization
-- **Railway**: Deployment platform
+- **Flutter**: Cross-platform web framework
+- **Dart**: Programming language
+- **speech_to_text**: Voice recognition (local device)
+- **http**: REST API communication
+- **permission_handler**: Microphone permissions
+- **shared_preferences**: Local storage for theme preference
 
-## Features
+## Deployment
 
-- **Voice/NLP Processing**: Process voice commands using Google Gemini AI
-- **Shopping List Management**: CRUD operations for shopping lists and items
-- **Recommendations**: AI-powered product recommendations
-- **Product Search**: Search for products
-- **User History**: Track purchase history
-- **User Preferences**: Manage user preferences
+- **Frontend**: Hosted on [Render](https://project-repo-0.onrender.com/)
+- **Backend**: Hosted on [Render](https://projectrepobackend-production.up.railway.app)
 
 ## Project Structure
 
 ```
-src/
-├── main/
-│   ├── java/
-│   │   └── com/
-│   │       └── voice/
-│   │           └── shopping/
-│   │               ├── VoiceShoppingApplication.java
-│   │               ├── config/
-│   │               ├── controller/
-│   │               ├── dto/
-│   │               ├── model/
-│   │               ├── repository/
-│   │               └── service/
-│   └── resources/
-│       ├── application.yml
-│       └── .env
-├── test/
-target/
-pom.xml
-Dockerfile
-docker-compose.yml
-render.yaml
+lib/
+├── main.dart                    # App entry point with dark mode support
+├── models/                      # Data models
+├── services/
+│   ├── api_service.dart         # Backend API communication
+│   ├── speech_service.dart      # Speech-to-text functionality
+│   ├── theme_service.dart       # Theme preference management
+│   └── user_service.dart        # User data management
+├── screens/
+│   ├── splash_screen.dart       # Initial loading screen
+│   ├── main_navigation.dart     # Bottom navigation container
+│   ├── shopping_list_screen.dart # Main shopping list view
+│   ├── search_screen.dart       # Product search view
+│   ├── history_screen.dart      # Purchase history and analytics
+│   ├── settings_screen.dart     # App settings and preferences
+│   ├── shared_lists_screen.dart # Shared shopping lists
+│   └── user_profile_screen.dart # User profile management
+├── utils/                       # Utility functions
+├── widgets/                     # Reusable UI components
+├── analysis_options.yaml
+├── pubspec.yaml
+└── pubspec.lock
+web/                            # Web-specific files
+build/                          # Build output
 ```
 
 ## Prerequisites
 
-- **Java 17+** - Download from [Oracle](https://www.oracle.com/java/technologies/downloads/) or [OpenJDK](https://openjdk.org/)
-- **Maven 3.6+** - Download from [maven.apache.org](https://maven.apache.org/download.cgi)
+- **Flutter SDK 3.x** - Install from [flutter.dev](https://flutter.dev/docs/get-started/install)
 - **Git** - For cloning the repository
-- **MongoDB Atlas account** - Create free account at [mongodb.com](https://www.mongodb.com/atlas)
-- **Google Gemini API key** - Get from [Google AI Studio](https://makersuite.google.com/app/apikey)
 
 ## Setup Instructions
 
 ### Step 1: Clone the Repository
-
 ```bash
-git clone https://github.com/Anshadi/Project_Repo_backend.git
-cd Project_Repo_backend
+git clone https://github.com/Anshadi/Project_Repo.git
+cd Project_Repo
 ```
 
-### Step 2: Create Environment Configuration
-
-Create a `.env` file in the root directory:
-
-```env
-GEMINI_API_KEY=your-gemini-api-key-here
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/voice_shopping
-SERVER_PORT=8082
-GEMINI_API_MODEL=gemini-1.5-flash
-GEMINI_API_MAX_TOKENS=150
-```
-
-### Step 3: Install Dependencies and Run
-
+### Step 2: Install Flutter Dependencies
 ```bash
-mvn clean install
-mvn spring-boot:run
+flutter pub get
 ```
 
-Or use Docker:
-
+### Step 3: Run the Application
 ```bash
-docker-compose up
+flutter run -d chrome
 ```
 
-### Step 4: Verify Backend is Running
+For web development:
+```bash
+flutter run -d web-server --web-port 8080
+```
 
-- Backend will start on `http://localhost:8082`
-- Check health endpoint: `http://localhost:8082/api/health`
+### Step 4: Configuration
 
-## API Endpoints
+1. **Update API endpoint** (if needed)
+   Edit `lib/services/api_service.dart`:
+   ```dart
+   static const String baseUrl = 'https://your-backend-url.onrender.com/api';
+   ```
+
+2. **Enable microphone permissions**
+   - Web: Browser will prompt for microphone access
+   - Permissions are handled automatically by Flutter web
+
+## Permissions Required
+
+### Web Browser:
+- **Microphone Access**: For voice recognition
+- **Network Access**: For API communication
+
+## Recently Added Features
+
+### Dark Mode Theme
+- **Complete dark theme implementation** with automatic theme switching
+- **Persistent theme preference** using SharedPreferences
+- **Adaptive colors** that work well in both light and dark modes
+- **Theme toggle** available in Settings screen
+- **System theme detection** capability
+
+### Shopping History Visualization
+- **Complete purchase history tracking** with detailed analytics
+- **Interactive charts and statistics**:
+  - Total items purchased and quantities
+  - Total amount spent and average per item
+  - Category breakdown with visual charts
+  - Monthly purchase trends
+- **Filtering options** (This Week, This Month, Last 3 Months)
+- **Detailed item history** with store information and prices
+- **Export functionality** for data backup
+- **Two-tab interface**: History timeline and Analytics dashboard
+
+### Enhanced Navigation
+- **4-tab bottom navigation**: Shopping List, Search, History, Settings
+- **Settings screen** with comprehensive preferences
+- **Theme management** and app customization options
+
+### Additional Features
+- **Shared Lists**: Share shopping lists with other users
+- **User Profile**: Manage user account and preferences
+- **Voice Commands**: Advanced voice recognition for adding items, searching, etc.
+
+## Required Backend Endpoints
+
+The frontend expects the following REST API endpoints to be implemented in your Spring Boot backend:
 
 - `GET /api/health` - Health check
 - `GET /api/products/search?q={query}` - Search products
@@ -113,13 +153,6 @@ docker-compose up
 - `POST /api/voice/process` - Process voice commands
 - `GET /api/recommendations` - Get product recommendations
 
-## Deployment
+## About
 
-- **Backend**: Hosted on [Railway](https://projectrepobackend-production.up.railway.app)
-
-## Configuration
-
-- **Database**: MongoDB Atlas
-- **AI Service**: Google Gemini API
-- **Port**: 8082
-- **CORS**: Configured for frontend access
+This is a repository for pushing ready projects
